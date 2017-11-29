@@ -1,0 +1,75 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    //glide
+    compile 'com.github.bumptech.glide:glide:4.3.1'
+    //fastjson
+    compile 'com.alibaba:fastjson:1.1.63.android'
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+// read properties
+
+//账户名
+def bintrayUser = properties.getProperty("bintray.user")
+//项目apikey
+def bintrayApikey = properties.getProperty("bintray.apikey")
+//novoda默认认识的bintray项目名称是maven，但是也可以自己定义，但是名称要和bintray上的对应
+def publishRepoName     = properties.getProperty("publish.repoName")
+//账户名
+def publishUserOrg      = properties.getProperty("publish.userOrg")
+//包名
+def publishGroupId      = properties.getProperty("publish.groupId")
+//项目名
+def publishArtifactId   = properties.getProperty("publish.artifactId")
+//版本号
+def version             = properties.getProperty("publish.publishVersion")
+//项目描述
+def publishDesc         = properties.getProperty("publish.desc")
+//项目首页地址
+def publishWebsite      = properties.getProperty("publish.website")
+
+publish {
+    repoName        = publishRepoName
+    userOrg         = publishUserOrg
+    groupId         = publishGroupId
+    artifactId      = publishArtifactId
+    publishVersion  = version
+    desc            = publishDesc
+    website         = publishWebsite
+}
+
+
+/*
+项目上传bintray命令，在android studio Terminal中执行
+
+./gradlew clean build bintrayUpload -PbintrayUser=hyman -PbintrayKey=xxxxxxxxxxxxxxxxxxxxxx -PdryRun=false
+
+ */
