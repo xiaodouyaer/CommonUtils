@@ -1,0 +1,6 @@
+MaterialSpinner简介
+1、这个工具提供了一个可以弹出下拉popupWindow的view，并且自带一个显示条目的listView;
+2、listView的条目数据可以通过setItems方法直接设置；
+3、条目点击事件也可通过setOnItemSelectedListener方法设置一个回掉对象；
+4、提供有setAdapter方法，可设置自定义的Adapter，也可不设置，内置有默认的Adapter
+5、以上仅仅是几个重要的方法，其他用法请看源码

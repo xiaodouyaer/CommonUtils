@@ -15,7 +15,7 @@
  *
  */
 
-package com.liuchaoya.commonutils.myspinner;
+package com.liuchaoya.commonutils.spinner;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
